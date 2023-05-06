@@ -21,7 +21,7 @@ services:
 
   # Ideas On Purpose's local WordPress development environment.
   # Update image version with `docker run ideasonpurpose/wordpress init`
-  # Project info: https://github.com/ideasonpurpose/docker-wordpress-dev
+  Project info: https://github.com/igeclouds/docker-wordpress-dev
   wordpress:
     depends_on:
       - db
