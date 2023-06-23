@@ -3,9 +3,9 @@
 # This version is automatically updated by the wordpress:bump script
 # but can also be manually updated for tagged betas and release candidates
 # Manual updates also must change wp-version.json
-FROM wordpress:6.2-php8.0-apache
+FROM wordpress:6.2.2-php8.0-apache
 
-LABEL version="1.0.3"
+LABEL version="1.0.4"
 
 # Add `wp` user and group, then add `www-data` user to `wp` group
 RUN addgroup  --gid 1000 wp \

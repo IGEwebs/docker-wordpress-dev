@@ -1,6 +1,6 @@
 {
   "name": "docker-wordpress-dev",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "Docker-based local development environment for WordPress projects",
   "repository": "https://github.com/ideasonpurpose/docker-wordpress-dev",
@@ -48,10 +48,10 @@
     ]
   },
   "devDependencies": {
-    "@prettier/plugin-php": "^0.19.4",
+    "@prettier/plugin-php": "^0.19.5",
     "auto-changelog": "^2.4.0",
     "prettier": "^2.8.8",
-    "version-everything": "^0.9.2"
+    "version-everything": "^0.9.3"
   },
   "auto-changelog": {
     "package": true,
