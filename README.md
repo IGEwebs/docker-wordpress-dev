@@ -1,20 +1,20 @@
 # WordPress local development with Docker
 
 <h4> 
-Version 1.0.4
-<!-- WPVERSION -->- WordPress 6.2.2
+Version 1.1.1
+<!-- WPVERSION -->- WordPress 6.3
 </h4>
 
 <!-- [![dockeri.co](https://dockeri.co/image/ideasonpurpose/wordpress)](https://hub.docker.com/r/ideasonpurpose/wordpress)<br> -->
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/ideasonpurpose/wordpress)](https://hub.docker.com/r/ideasonpurpose/wordpress)
-[![Push to Docker Hub](https://github.com/ideasonpurpose/docker-wordpress-dev/workflows/Push%20to%20Docker%20Hub/badge.svg)](https://github.com/ideasonpurpose/docker-wordpress-dev)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ideasonpurpose/wordpress?logo=docker&logoColor=white)](https://hub.docker.com/r/ideasonpurpose/wordpress)
+[![Push to DockerHub](https://img.shields.io/github/actions/workflow/status/ideasonpurpose/docker-wordpress-dev/push-to-dockerhub.yml?logo=github&logoColor=white&label=Push%20to%20DockerHub)](https://github.com/ideasonpurpose/docker-wordpress-dev)
 
 ## About This Project
 
 This project provides local development environments for fast iteration of existing WordPress websites. This includes pre-configured Docker-based MySQL and PHP servers, our [Docker-Build toolchain][docker-build], [Xdebug](https://xdebug.org/), [ImageMagick](http://www.imagemagick.org/) and a number of helper scripts.
 
-The project builds on the official WordPress docker image, currently **[v6.2.2](https://hub.docker.com/_/wordpress)**
+The project builds on the official WordPress docker image, currently **[v6.3](https://hub.docker.com/_/wordpress)**
 
 ## Getting Started
 
@@ -23,9 +23,11 @@ To update an existing project or start a new one, run the following commands in 
 ##### macOS, Linux & Windows PowerShell
 
 ```
-docker run --rm -it -v ${PWD}:/usr/src/site ideasonpurpose/wordpress:1.0.4 init
+docker run --rm -it -v ${PWD}:/usr/src/site ideasonpurpose/wordpress:1.1.1 init
 ```
+
 Followed by:
+
 ```
 npm run bootstrap
 ```
@@ -35,7 +37,7 @@ _NOTE: If **~/.composer** doesn't exist, mounting the Docker volume will create 
 ##### Windows Command Prompt
 
 ```
-docker run --rm -it -v %cd%:/usr/src/site ideasonpurpose/wordpress:1.0.4 init
+docker run --rm -it -v %cd%:/usr/src/site ideasonpurpose/wordpress:1.1.1 init
 ```
 
 - `init` command copies all the necessary tooling files into place and sets up the default theme directory structure.
@@ -96,11 +98,17 @@ All `*.sql` files from the top-level **\_db** directory will be in alphabetical 
   - **`composer:install`** - Installs packages from the composer.lock file
   - **`composer:require`** - Add new packages and update composer.json
   - **`composer:update`** - Updates composer dependencies to their newest allowable version and rewrites the **composer.lock** file.
-- **`mysql`**<br>
   Opens a mysql shell to the development WordPress database
-  - **`mysql:dump`**, **`mysqldump`** - Writes a compressed, timestamped database snapshot into the **\_db** directory
-  - **`mysql:reload`** - Drops, then reloads the database from the most recent dumpfile in **\_db** then attempts to activate the development theme.
-- **`phpmyadmin`** - Starts a phpMyAdmin server at [localhost:8002](http://localhost:8002)
+- **`db:admin`** - Starts a phpMyAdmin server at [localhost:8002](http://localhost:8002) 
+- **`db:dump`** - Writes a compressed, timestamped database snapshot into the **\_db** directory
+- **`db:pull`** - Alias for `pull:db` 
+- **`db:reload`** - Drops then reloads the database from the most recent dumpfile in **\_db**, then attempts to activate the development theme
+- **`db:shell`** - Opens a shell to the development WordPress database
+- **`dev`** - Alias for `start`
+- **`mariadb`**, **`mysql`** - Aliases for `db:admin` 
+- **`mariadb-dump`**, **`db:dump`**, **`mysql:dump`**, **`mysqldump`** - Aliases for `db:dump` 
+- **`mariadb:reload`**, **`mysql:reload`** - Aliases for `db:reload`
+- **`phpmyadmin`** - Alias for  `db:admin` 
 - **`project:refresh`** - Update the project with the latest tooling.
 - **`pull`**<br>
   Syncs data from a remote server to the local development environment. The bare command will run these sub-commands:
@@ -110,7 +118,6 @@ All `*.sql` files from the top-level **\_db** directory will be in alphabetical 
   - **`pull:uploads-all`** - Syncs down the entire **wp-content/uploads** directory from the remote
 - **`logs:wordpress`** - Stream the WordPress debug.log
 - **`wp-cli`** - Runs [wp-cli](https://wp-cli.org/vc) commands. The default command re-activates the development theme.
-
 
 #### Permissions Repair on macOS
 
