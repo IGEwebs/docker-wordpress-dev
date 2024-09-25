@@ -1,6 +1,6 @@
 {
   "name": "docker-wordpress-dev",
-  "version": "1.1.1",
+  "version": "1.6.7",
   "private": true,
   "description": "Docker-based local development environment for WordPress projects",
   "repository": "https://github.com/ideasonpurpose/docker-wordpress-dev",
@@ -10,25 +10,26 @@
     "Joe Maller <joe@ideasonpurpose.com>"
   ],
   "scripts": {
+    "path": "echo $PATH",
     "bump": "npm run wordpress:bump",
     "shfmt": "docker compose run --rm shfmt",
     "version": "version-everything && auto-changelog && git add -u",
-    "wordpress:bump": "docker-compose run --rm bump-wp"
+    "wordpress:bump": "docker compose run --rm bump-wp"
   },
   "prettier": "@ideasonpurpose/prettier-config",
   "devDependencies": {
-    "@ideasonpurpose/prettier-config": "^0.0.4",
-    "@prettier/plugin-php": "^0.20.1",
-    "auto-changelog": "^2.4.0",
-    "prettier": "^3.0.2",
-    "version-everything": "^0.11.0"
+    "@ideasonpurpose/prettier-config": "^0.0.6",
+    "@prettier/plugin-php": "^0.22.2",
+    "auto-changelog": "^2.5.0",
+    "prettier": "^3.3.3",
+    "version-everything": "^0.11.4"
   },
   "auto-changelog": {
     "package": true,
     "backfillLimit": 7
   },
   "version-everything": {
-    "prefix": "ideasonpurpose/wordpress:",
+    "prefix_DISABLED": "ideasonpurpose/wordpress:",
     "files": [
       "bin/docker-entrypoint-iop.sh",
       "bin/getting-started.sh",

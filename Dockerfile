@@ -3,9 +3,9 @@
 # This version is automatically updated by the wordpress:bump script
 # but can also be manually updated for tagged betas and release candidates
 # Manual updates also must change wp-version.json
-FROM wordpress:6.3-php8.2-apache
+FROM wordpress:6.6.2-php8.2-apache
 
-LABEL version="1.1.1"
+LABEL version="1.6.7"
 
 # Add `wp` user and group, then add `www-data` user to `wp` group
 RUN addgroup  --gid 1000 wp \
@@ -69,6 +69,7 @@ RUN apt-get update -yqq \
         zlib1g-dev \
         libssl-dev \
         libmemcached-dev \
+    && apt-get autoremove -yqq \
     && rm -rf /var/lib/apt/lists/* \
     && pecl install memcached \
     && docker-php-ext-enable memcached
@@ -80,7 +81,7 @@ RUN apt-get update -yqq \
 # Install XDebug, largly copied from:
 # https://github.com/andreccosta/wordpress-xdebug-dockerbuild
 # https://pecl.php.net/package/xdebug
-RUN pecl install xdebug-3.2.2 \
+RUN pecl install xdebug-3.3.2 \
     && docker-php-ext-enable xdebug \
     && echo '[XDebug]' >> /usr/local/etc/php/conf.d/z_iop-xdebug.ini \
     && echo 'zend_extension=xdebug' >> /usr/local/etc/php/conf.d/z_iop-xdebug.ini \
@@ -113,21 +114,26 @@ RUN mkdir -p /var/log/wordpress \
 # Install less for wp-cli's pager
 RUN apt-get update -yqq \
     && apt-get install -y less \
+    && apt-get autoremove -yqq \
     && rm -rf /var/lib/apt/lists/*
 
 # Install wp-cli since the native image is a bowl of permissions errors
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > /usr/local/bin/wp \
     && chmod +x /usr/local/bin/wp
 
-# Install current node js and global install sort-package-json for the init script
-# Install npm so we can run npx sort-package-json from the init script
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+# Install LTS node.js from nodesource:
+#     https://github.com/nodesource/distributions#installation-instructions
+#     https://github.com/nodejs/release#release-schedule
+# Also global install npm & sort-package-json so we can call them from the init script
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends \
         nodejs \
-    && rm -rf /var/lib/apt/lists/* \
     && npm install --global \
         npm \
-        sort-package-json
+        sort-package-json \
+    && apt-get autoremove -yqq \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install rsync, ssh-client and jq for merging tooling and package.json files
 RUN apt-get update -yqq \
@@ -135,6 +141,7 @@ RUN apt-get update -yqq \
         rsync \
         openssh-client \
         jq \
+    && apt-get autoremove -yqq \
     &&  rm -rf /var/lib/apt/lists/*
 
 
@@ -181,6 +188,7 @@ RUN apt-get update -yqq \
         iputils-ping \
         dnsutils \
         vim \
+    && apt-get autoremove -yqq \
     &&  rm -rf /var/lib/apt/lists/*
 
 # Copy scripts to /bin and make them executable
