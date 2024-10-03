@@ -1,0 +1,13 @@
+/**
+ * Typography
+ */
+
+.type- {
+  &intro {
+    font-size: 1em;
+  }
+}
+
+.is-style-intro {
+  @extend .type-intro;
+}

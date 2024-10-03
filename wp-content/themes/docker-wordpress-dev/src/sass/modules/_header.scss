@@ -1,0 +1,47 @@
+/**
+ * Header
+ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: $white;
+
+  .wrapper,
+  &__bar {
+    @each $breakpoint, $height in $header-heights {
+      @include mq($breakpoint) {
+        height: $height;
+      }
+    }
+  }
+
+  .wrapper,
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    svg {
+      max-height: 100%;
+    }
+  }
+
+  @include mq(lg, "max") {
+    // Places the header bar above the opened hamburger menu
+    &__bar {
+      width: 100%;
+      position: relative;
+      z-index: 10;
+    }
+  }
+}

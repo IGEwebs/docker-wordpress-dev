@@ -1,0 +1,32 @@
+{
+  "name": "ideasonpurpose/iop-example-site",
+  "description": "Docker-based local development environment for WordPress projects",
+  "authors": [
+    {
+      "name": "Ideas On Purpose",
+      "homepage": "https://www.ideasonpurpose.com"
+    }
+  ],
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "vendor-dir": "wp-content/themes/docker-wordpress-dev/vendor",
+    "platform": {
+      "php": "8.2",
+      "ext-intl": "0"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "IdeasOnPurpose\\": [
+        "wp-content/themes/docker-wordpress-dev/lib"
+      ]
+    }
+  },
+  "require": {
+    "ideasonpurpose/wp-admin-separators": "1.0.8",
+    "ideasonpurpose/wp-google-analytics": "^1.1.0",
+    "ideasonpurpose/wp-svg-lib": "dev-master",
+    "ideasonpurpose/wp-theme-init": "^2.13.2"
+  }
+}

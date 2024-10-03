@@ -1,0 +1,40 @@
+/**
+ * Utility classes
+ */
+
+.a11y {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(1px);
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  background: #000;
+  color: #fff;
+}
+
+/* 
+  This class can be @extend'ed so that an item
+  extends its background color to the sides of the screen
+*/
+
+.extends-bg {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    left: -100vw;
+    right: -100vw;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "settings": {
+    "color": {
+      "link": false,
+      "palette": [
+        { "name": "White", "slug": "white", "color": "#fff" },
+        { "name": "Black", "slug": "black", "color": "#000" }
+      ],
+      "gradients": [
+        {
+          "name": "Blue-Navy",
+          "gradient": "linear-gradient(0deg, #00f 15%, #004 85%)",
+          "slug": "blue-navy-gradient"
+        }
+      ],
+      "custom": true,
+      "customGradient": true,
+      "customDuotone": false,
+      "defaultDuotone": false
+    },
+    "typography": {
+      "dropCap": false,
+      "customFontSize": false
+    },
+    "blocks": {
+      "core/button": {
+        "border": {
+          "customRadius": false,
+          "customColor": false
+        }
+      },
+      "core/paragraph": {
+        "typography": {
+          "fontSizes": []
+        }
+      }
+    }
+  },
+  "styles": {
+    "blocks": {
+      "core/button": {
+        "border": {
+          "radius": "0px"
+        }
+      }
+    }
+  }
+}

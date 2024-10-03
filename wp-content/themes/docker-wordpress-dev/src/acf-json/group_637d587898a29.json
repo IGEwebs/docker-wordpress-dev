@@ -1,0 +1,85 @@
+{
+    "key": "group_637d587898a29",
+    "title": "Cookies and Copyright",
+    "fields": [
+        {
+            "key": "field_60ec673efed85",
+            "label": "Cookie Notice",
+            "name": "cookie_notice",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Basic HTML is allowed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "75",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "This site uses cookies for analytics. By continuing to browse this site, you agree to this use.",
+            "placeholder": "This site uses cookies for analytics. By continuing to browse this site, you agree to this use.",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_60ec6964fc0c2",
+            "label": "Cookie Accept Button",
+            "name": "cookie_accept_button",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Agree",
+            "placeholder": "Agree",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6082c24c9b58e",
+            "label": "Copyright Line",
+            "name": "copyright",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text appearing after the copyright symbol. Use the token <code>%YEAR%<\/code> to insert the current year.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "CLIENT NAME - %YEAR% All Rights Reserved",
+            "placeholder": "CLIENT NAME - %YEAR% All Rights Reserved",
+            "prepend": "©",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-footer"
+            }
+        ]
+    ],
+    "menu_order": 11,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1669159125
+}

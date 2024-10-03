@@ -1,0 +1,93 @@
+@use "sass:math";
+
+/**
+ * Header Menu button config
+ */
+
+$menuBtnSize: 60px;
+$menuBtnLineWidth: 28px;
+$menuBtnLineThickness: 3px;
+$menuBtnLinesSpacing: 6px;
+$menuBtnAnimationDuration: 250ms;
+
+/**
+ * Menu button styles
+ */
+
+.header__menu-button {
+  //color: $indigo;
+
+  position: relative;
+  width: $menuBtnSize;
+  height: $menuBtnSize;
+  vertical-align: middle;
+  margin-left: 25px;
+  margin-right: math.div(-($menuBtnSize - $menuBtnLineWidth), 2);
+  background: transparent;
+  cursor: pointer;
+  outline: 0;
+
+  &-lines {
+    margin: ceil(math.div(-$menuBtnLineThickness, 2)) auto 0;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transition: background $menuBtnAnimationDuration;
+
+    // Transform to X
+    .menu-open & {
+      background: transparent;
+
+      &:before {
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: rotate(45deg);
+        transition: top $menuBtnAnimationDuration ease 0s,
+          transform $menuBtnAnimationDuration ease $menuBtnAnimationDuration;
+      }
+
+      &:after {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: rotate(-45deg);
+        transition: bottom $menuBtnAnimationDuration ease 0s,
+          transform $menuBtnAnimationDuration ease $menuBtnAnimationDuration;
+      }
+    }
+  }
+
+  &-lines,
+  &-lines:before,
+  &-lines:after {
+    background: currentColor;
+    width: $menuBtnLineWidth;
+    height: $menuBtnLineThickness;
+    position: absolute;
+  }
+
+  &-lines:before,
+  &-lines:after {
+    content: "";
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+
+  &-lines:before {
+    top: -1 * ($menuBtnLineThickness + $menuBtnLinesSpacing);
+    transition: top $menuBtnAnimationDuration ease $menuBtnAnimationDuration,
+      transform $menuBtnAnimationDuration ease 0s;
+  }
+
+  &-lines:after {
+    bottom: -1 * ($menuBtnLineThickness + $menuBtnLinesSpacing);
+    transition: bottom $menuBtnAnimationDuration ease $menuBtnAnimationDuration,
+      transform $menuBtnAnimationDuration ease 0s;
+  }
+
+  @include mq(lg) {
+    display: none;
+  }
+}

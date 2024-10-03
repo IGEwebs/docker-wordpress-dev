@@ -1,0 +1,24 @@
+/**
+ * Wordpress logged in state
+ * Normalizes the Admin Bar and pushes the header & menu down
+ */
+
+#wpadminbar {
+  position: fixed;
+}
+
+.logged-in {
+  .header {
+    top: 46px;
+
+    &__menu {
+      top: 46px + map-get($map: $header-heights, $key: "sm");
+    }
+  }
+
+  @media (min-width: 783px) {
+    .header {
+      top: 32px;
+    }
+  }
+}

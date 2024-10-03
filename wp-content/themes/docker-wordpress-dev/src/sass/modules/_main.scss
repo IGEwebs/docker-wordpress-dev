@@ -1,0 +1,12 @@
+/**
+ * <main> element
+ * Pushes content below the fixed header
+ */
+
+main {
+  @each $breakpoint, $height in $header-heights {
+    @include mq($breakpoint) {
+      margin-top: $height;
+    }
+  }
+}

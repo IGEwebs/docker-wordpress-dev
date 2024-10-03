@@ -1,0 +1,33 @@
+/**
+ * Header Menu
+ */
+
+.header__menu {
+  @include mq(lg, "max") {
+    position: fixed;
+    top: map-get($map: $header-heights, $key: "sm");
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+
+    background: $white;
+
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 250ms;
+
+    .menu-open & {
+      transform: translateY(0);
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+
+  @include mq(lg) {
+    &-list {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
